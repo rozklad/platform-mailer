@@ -1,7 +1,7 @@
 {
 	"name": "sanatorium/mailer",
 	"type": "platform-extension",
-	"description": "Mailing extension",
+	"description": "Mailing extension for Cartalyst Platform",
 	"authors": [
 		{
 			"name": "Sanatorium",
