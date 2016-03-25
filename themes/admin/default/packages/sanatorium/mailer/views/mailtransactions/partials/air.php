@@ -1,0 +1,1 @@
+<?php echo input()->old('template', $mailtransaction->template) ?>
