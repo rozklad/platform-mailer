@@ -43,15 +43,19 @@ class MailtransactionServiceProvider extends ServiceProvider {
 	public function registerDbBladeCompilerPackage()
 	{
 		$serviceProvider = 'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider';
+		$dbviewClass = 'Flynsarmy\DbBladeCompiler\Facades\DbView';
+
+		/**
+		 * Dependency is not available
+		 */
+		if ( !class_exists($serviceProvider) || !class_exists($dbviewClass) ) 
+			return false; 
 
 		if (!$this->app->getProvider($serviceProvider)) {
 			$this->app->register($serviceProvider);
 
-			AliasLoader::getInstance()->alias('DbView', 'Flynsarmy\DbBladeCompiler\Facades\DbView');
+			AliasLoader::getInstance()->alias('DbView', $dbviewClass);
 		}
-/*
-		$this->app['dbview']->directive('hook', function ($value) {
-            return "<?php echo Widget::make('sanatorium/hooks::hook.show', array$value); ?>";
-        });*/
+
 	}
 }
