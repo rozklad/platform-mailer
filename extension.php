@@ -322,4 +322,23 @@ return [
 		],
 	],
 
+	/*
+	|--------------------------------------------------------------------------
+	| Integrity
+	|--------------------------------------------------------------------------
+	|
+	*/
+
+
+	'integrity' => [
+
+		[
+
+			'name' => 'flynsarmy/db-blade-compiler is available',
+			'test' => ['Sanatorium\Mailer\Providers\MailtransactionServiceProvider', 'checkHasDbBladeCompiler']
+		
+		]
+
+	],
+
 ];

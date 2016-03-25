@@ -48,7 +48,7 @@ class MailtransactionServiceProvider extends ServiceProvider {
 		/**
 		 * Dependency is not available
 		 */
-		if ( !class_exists($serviceProvider) || !class_exists($dbviewClass) ) 
+		if ( self::checkHasDbBladeCompiler() == false ) 
 			return false; 
 
 		if (!$this->app->getProvider($serviceProvider)) {
@@ -58,4 +58,23 @@ class MailtransactionServiceProvider extends ServiceProvider {
 		}
 
 	}
+
+	/**
+	 * Function used for integrity checks
+	 */
+	public static function checkHasDbBladeCompiler()
+	{
+		// @todo - make array of classes because it looks better
+		$serviceProvider = 'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider';
+		$dbviewClass = 'Flynsarmy\DbBladeCompiler\Facades\DbView';
+
+		/**
+		 * Dependency is not available
+		 */
+		if ( !class_exists($serviceProvider) || !class_exists($dbviewClass) ) 
+			return false; 
+
+		return true;
+	}
+
 }
