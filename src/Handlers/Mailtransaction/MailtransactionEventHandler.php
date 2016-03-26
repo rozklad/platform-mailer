@@ -43,6 +43,13 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 		if ( $mailtransactions ) {
 
+			// Use queue or send right away
+			if ( config('sanatorium-mailer.queue') ) {
+				$method = 'queue';
+			} else {
+				$method = 'send';
+			}
+
 			// Set frontend theme for mailing
 			Theme::setActive(config("platform-themes.active.frontend"));
 			Theme::setFallback(config("platform-themes.fallback.frontend"));
@@ -51,8 +58,7 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 				$content = \DbView::make($mailtransaction)->field('template')->with(['object' => $object])->render();
 
-				// @todo - use queue
-				$result = Mail::send('sanatorium/mailer::blank', ['content' => $content], function ($m) use ($mailtransaction, $object, $event_name) {
+				$result = Mail::$method('sanatorium/mailer::blank', ['content' => $content], function ($m) use ($mailtransaction, $object, $event_name) {
 		            
 		            $receivers_raw = \DbView::make($mailtransaction)->field('receivers')->with(['object' => $object])->render();
 

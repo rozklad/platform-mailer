@@ -20,6 +20,8 @@ class MailtransactionServiceProvider extends ServiceProvider {
 
 		// flynsarmy/db-blade-compiler
 		$this->registerDbBladeCompilerPackage();
+
+		$this->prepareResources();
 	}
 
 	/**
@@ -39,6 +41,22 @@ class MailtransactionServiceProvider extends ServiceProvider {
 		// Register the validator
 		$this->bindIf('sanatorium.mailer.mailtransaction.validator', 'Sanatorium\Mailer\Validator\Mailtransaction\MailtransactionValidator');
 	}
+
+	/**
+     * Prepare the package resources.
+     *
+     * @return void
+     */
+    protected function prepareResources()
+    {
+        $config = realpath(__DIR__.'/../../config/config.php');
+
+        $this->mergeConfigFrom($config, 'sanatorium-mailer');
+
+        $this->publishes([
+            $config => config_path('sanatorium-mailer.php'),
+        ], 'config');
+    }
 
 	public function registerDbBladeCompilerPackage()
 	{
