@@ -35,7 +35,7 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 	public $last_receivers = [];
 
-	public function generic($object = null)
+	public function generic($object = null, $attachments = null)
 	{
 		$event_name = Event::firing();
 
@@ -58,7 +58,7 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 				$content = \DbView::make($mailtransaction)->field('template')->with(['object' => $object])->render();
 
-				$result = Mail::$method('sanatorium/mailer::blank', ['content' => $content], function ($m) use ($mailtransaction, $object, $event_name) {
+				$result = Mail::$method('sanatorium/mailer::blank', ['content' => $content], function ($m) use ($mailtransaction, $object, $event_name, $attachments) {
 		            
 		            $receivers_raw = \DbView::make($mailtransaction)->field('receivers')->with(['object' => $object])->render();
 
@@ -81,6 +81,42 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 		            $subject = \DbView::make($mailtransaction)->field('subject')->with(['object' => $object])->render();
 		            
 		            $m->subject( $subject );
+
+					if ( isset($attachments) ) {
+
+						if ( !empty($attachments) ) {
+
+							foreach( $attachments as $attachment ) {
+
+								if ( is_array($attachment) ) {
+
+									switch( $attachment['type'] ) {
+
+										case 'filesystem':
+
+											if ( !isset($attachment['path']) )
+												continue;
+
+											$file = \Filesystem::get($attachment['path']);
+
+											$contents = $file->read();
+											$name = basename($attachment['path']);
+	
+											$m->attachData($contents, $name);
+
+											break;
+
+									}
+
+								} else {
+									$m->attach($attachment);
+								}
+
+							}
+
+						}
+
+					}
 
 		        });
 
