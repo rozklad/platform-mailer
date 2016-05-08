@@ -2,6 +2,6 @@
 
 return [
 
-	'queue' => true,
+	'queue' => false,
 
 ];

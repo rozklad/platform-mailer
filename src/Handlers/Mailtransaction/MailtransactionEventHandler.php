@@ -84,6 +84,8 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 		        });
 
+				/*
+				 * Logging mail actions
 		        foreach( $this->last_receivers as $receiver ) {
 
 		        	if( count(Mail::failures()) > 0 ) {
@@ -99,6 +101,7 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 		        		]);
 
 		        }
+				*/
 
 			}
 			
