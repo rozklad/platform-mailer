@@ -207,7 +207,7 @@ class MailtransactionsController extends AdminController {
 	protected function processForm($mode, $id = null)
 	{
 		// Store the mailtransaction
-		list($messages) = $this->mailtransactions->store($id, request()->all());
+		list($messages) = $this->mailtransactions->store($id, request()->except(['redactor-air']));
 
 		// Do we have any errors?
 		if ($messages->isEmpty())
