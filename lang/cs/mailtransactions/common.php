@@ -1,14 +1,10 @@
 <?php
 
-return [
-
-	'title'  => 'Mailové zprávy',
-
-	'tabs' => [
-
-		'general'    => 'Mailová zpráva',
-		'attributes' => 'Atributy',
-
-	],
-
-];
+return array (
+  'title' => 'Mailové zprávy',
+  'tabs' => 
+  array (
+    'general' => 'Mailová zpráva',
+    'attributes' => 'Atributy',
+  ),
+);

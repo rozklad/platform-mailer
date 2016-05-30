@@ -1,14 +1,10 @@
 <?php
 
-return [
-
-	'title'  => 'Mailing transactions',
-
-	'tabs' => [
-
-		'general'    => 'Mailing transaction',
-		'attributes' => 'Attributes',
-
-	],
-
-];
+return array (
+  'title' => 'Mailing transactions',
+  'tabs' => 
+  array (
+    'general' => 'Mailing transaction',
+    'attributes' => 'Attributes',
+  ),
+);
