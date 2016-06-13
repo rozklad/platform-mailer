@@ -55,8 +55,14 @@ And then we trigger the event and pass data anywhere in the application like thi
 
 ## Changelog
 
+1.2.3 - Added common seed
 1.1.0 - Added simple documentation
 
 ## Support
 
-Support not available.
+### Troubleshooting
+
+**Q: No hint path defined for [sanatorium/mailer]**
+A: This might be caused by barryvdh/laravel-debugbar. Set following collector to false to get rid of this error message:
+
+    'debugbar.collectors.mail' => false

@@ -18,10 +18,10 @@ class MailtransactionServiceProvider extends ServiceProvider {
 		// Subscribe the registered event handler
 		$this->app['events']->subscribe('sanatorium.mailer.mailtransaction.handler.event');
 
+		$this->prepareResources();
+
 		// flynsarmy/db-blade-compiler
 		$this->registerDbBladeCompilerPackage();
-
-		$this->prepareResources();
 	}
 
 	/**
@@ -49,6 +49,7 @@ class MailtransactionServiceProvider extends ServiceProvider {
      */
     protected function prepareResources()
     {
+		// Load config
         $config = realpath(__DIR__.'/../../config/config.php');
 
         $this->mergeConfigFrom($config, 'sanatorium-mailer');

@@ -51,8 +51,8 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 			}
 
 			// Set frontend theme for mailing
-			Theme::setActive(config("platform-themes.active.frontend"));
-			Theme::setFallback(config("platform-themes.fallback.frontend"));
+			//Theme::setActive(config("platform-themes.active.frontend"));
+			//Theme::setFallback(config("platform-themes.fallback.frontend"));
 
 			foreach( $mailtransactions as $mailtransaction ) {
 
