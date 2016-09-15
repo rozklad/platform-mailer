@@ -56,8 +56,9 @@ And then we trigger the event and pass data anywhere in the application like thi
 ## Changelog
 
 3.0.4 - 2016-09-15 - Platform 5 support, caching
-1.2.3 - Added common seed
-1.1.0 - Added simple documentation
+1.2.3 - 2016-06-14 - Added common seed
+1.1.0 - 2016-05-08 - Added simple documentation
+1.0.0 - 2016-03-25 - Basic functionality
 
 ## Support
 
