@@ -24,7 +24,16 @@ class MailtransactionEventHandler extends BaseEventHandler implements Mailtransa
 
 		$listening = [];
 
-		foreach( Mailtransaction::all() as $mailtransaction ) 
+        // Check if mailtransactions are cached
+        if ( ! $mailtransactions = $this->app['cache']->get('sanatorium.mailer.mailtransaction.all') )
+        {
+
+            $mailtransactions = app('sanatorium.mailer.mailtransaction')->findAll();
+
+        }
+
+
+		foreach( $mailtransactions as $mailtransaction )
 		{
 			if ( !in_array($mailtransaction->event, $listening) )
 				$dispatcher->listen($mailtransaction->event, __CLASS__.'@generic');
